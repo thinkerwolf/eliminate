@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Game服文档-体力系统</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="doc"/>
+    <meta name="description" content="文档文字版"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/github-markdown.css">
+    <style>
+    	.markdown-body {
+    		box-sizing: border-box;
+    		min-width: 200px;
+    		max-width: 980px;
+    		margin: 0 auto;
+    		padding: 45px;
+    	}
+
+    	@media (max-width: 767px) {
+    		.markdown-body {
+    			padding: 15px;
+    		}
+    	}
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+     <h1>体力系统</h1>
+<h2>加体力GM-Interface</h2>
+<p>command=gm@handle&amp;cmd=reward&amp;param=vit:1</p>
+<h2>减体力GM-Interface</h2>
+<p>command=gm@handle&amp;cmd=consumeReward&amp;param=vit:1</p>
+<h2>体力推送-Push</h2>
+<p>PLAYER_VIT(&quot;push@player&quot;, &quot;vit&quot;)</p>
+<pre><code class="language-json">{
+    &quot;cmd&quot;:&quot;push@player&quot;,
+    &quot;data&quot;:{
+        &quot;vit&quot;:{
+            &quot;vit&quot;:10,   // 当前体力
+            &quot;maxVit&quot;:10, // 最大体力
+            &quot;time&quot;: 900  // 到最大体力需要多长时间 单位s
+        }
+    },
+    &quot;requestId&quot;:0,
+    &quot;status&quot;:3
+}
+</code></pre>
+
+    </article>
+</body>
+
+</html>

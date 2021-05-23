@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: eliminate-gateway
+
+gamer:
+  type: gateway
+  servlet-boot: netty
+  registry:
+    enabled: true
+    client:
+      service-url: zookeeper://zoo1:2181/eliminate
+  conf:
+    servlet:
+      servletName: gamer
+      servletClass: com.thinkerwolf.gamer.core.mvc.DispatcherServlet
+      initParams:
+        componentScanPackage: com.thinkerwolf # 组件扫描包名
+        compress: true # 传输压缩(仅http生效)
+        sessionTimeout: 3600 # session超时时间(s)
+        sessionTickTime: 5 # session检查tick(s)
+        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.gateway.filter.GatewaySessionFilter
+    listeners:
+      - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
+      - com.thinkerwolf.eliminate.gateway.listener.LocalSessionListener
+    net:
+      - workerThreads: 5
+        coreThreads: 10
+        maxThreads: 11
+        channelHandlers: com.thinkerwolf.eliminate.gateway.net.GatewayHandler
+        protocol: http
+        host: 101.200.177.204
+        rpcUseLocal: true
+        port: 81
+        ssl:
+          enabled: true
+        options:
+          so_keepalive: true
+        childOptions:
+          tcp_nodelay: true

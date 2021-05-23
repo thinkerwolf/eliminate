@@ -1,0 +1,14 @@
+# EliminateGame Docker Compose
+version: '3.7'
+services:
+  eliminate_chat1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: eliminate_chat:1.0
+    restart: always
+    hostname: eliminate.chat1
+    container_name: eliminate_chat1
+    network_mode: gamer
+    environment:
+      GAMER_MY_ID: 1001

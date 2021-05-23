@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Game服文档-日记本任务系统</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="doc"/>
+    <meta name="description" content="文档文字版"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/github-markdown.css">
+    <style>
+    	.markdown-body {
+    		box-sizing: border-box;
+    		min-width: 200px;
+    		max-width: 980px;
+    		margin: 0 auto;
+    		padding: 45px;
+    	}
+
+    	@media (max-width: 767px) {
+    		.markdown-body {
+    			padding: 15px;
+    		}
+    	}
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+     <h1>日记本任务系统</h1>
+<h2>获取日记本内容-Interface</h2>
+<p><em>command=diary@dayTasks</em></p>
+<pre><code class="language-json">{
+    &quot;status&quot;:1,
+    &quot;requestId&quot;:0,
+    &quot;data&quot;:{
+        &quot;tasks&quot;:[
+            {
+                &quot;intro&quot;:&quot;从一个岸边醒来，要想办法先填饱肚子，去找点#食物#吧&quot;,
+                &quot;left&quot;:1,                   // 任务剩余关卡数
+                &quot;state&quot;:1,                  // 状态 0.未解锁 1.开始  2.完成  3.领完奖励
+                &quot;day&quot;:1,                    // 天数
+                &quot;time&quot;:1,                   // 时间 1.上午、2.中午、3.晚上
+                &quot;kw&quot;:&quot;食物&quot;,                // 关键字
+                &quot;taskId&quot;:1001,              // 任务id
+                &quot;stageId&quot;:1                 // 当前任务的关卡id
+            },
+            {
+                &quot;intro&quot;:&quot;马上就晚上了，得去找点木柴生个#火堆#&quot;,
+                &quot;state&quot;:0,
+                &quot;time&quot;:2,
+                &quot;kw&quot;:&quot;火堆&quot;,
+                &quot;day&quot;:1,
+                &quot;taskId&quot;:1002
+            },
+            {
+                &quot;intro&quot;:&quot;随便找点东西做个可以休息的#床铺#吧&quot;,
+                &quot;state&quot;:0,
+                &quot;time&quot;:3,
+                &quot;kw&quot;:&quot;床铺&quot;,
+                &quot;day&quot;:1,
+                &quot;taskId&quot;:1003
+            }
+        ]
+    }
+}
+</code></pre>
+<h2>推送一个日记本任务状态</h2>
+<p>DIARY_TASK_INFO(&quot;push@diary&quot;, &quot;info&quot;)</p>
+<pre><code class="language-json">{
+    &quot;status&quot;:3,
+    &quot;requestId&quot;:0,
+    &quot;cmd&quot;:&quot;push@diary&quot;,
+    &quot;data&quot;:{
+        &quot;info&quot;:{
+            &quot;state&quot;:1,
+            &quot;kw&quot;:&quot;食物&quot;,
+            &quot;left&quot;:1,             // 剩余关卡数
+            &quot;taskId&quot;:1001,
+            &quot;day&quot;:1,
+            &quot;time&quot;:1,
+            &quot;stageId&quot;:1          // 当前关卡id
+        }
+    }
+}
+</code></pre>
+
+    </article>
+</body>
+
+</html>

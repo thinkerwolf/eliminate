@@ -1,0 +1,24 @@
+version: '3'
+services:
+  master:
+    image: redis
+    restart: always
+    hostname: redis.master
+    container_name: redis.master
+    network_mode: gamer
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass abao_222  --masterauth abao_222
+
+#  slave1:
+#    image: redis
+#    restart: always
+#    container_name: redis_slave1
+#    network_mode: gamer
+#    command: redis-server --slaveof redis_master 6379 --requirepass abao_222 --masterauth abao_222
+#  slave2:
+#    image: redis
+#    restart: always
+#    container_name: redis_slave2
+#    network_mode: gamer
+#    command: redis-server --slaveof redis_master 6379 --requirepass abao_222 --masterauth abao_222

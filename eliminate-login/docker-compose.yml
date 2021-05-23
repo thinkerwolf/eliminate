@@ -1,0 +1,16 @@
+# EliminateLogin Docker Compose
+version: '3.7'
+services:
+  eliminate_login1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: eliminate_login:1.0
+    restart: always
+    hostname: eliminate.login1
+    container_name: eliminate_login1
+    network_mode: gamer
+    ports:
+      - 82:82
+    environment:
+      GAMER_MY_ID: 1001

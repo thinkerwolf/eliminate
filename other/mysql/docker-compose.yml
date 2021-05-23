@@ -1,0 +1,13 @@
+# mysql docker-compose
+version: '3.7'
+services:
+  mysql1:
+    image: mysql:5.7
+    restart: always
+    hostname: data.mysql1
+    container_name: data.mysql1
+    ports:
+      - 3306:3306
+    network_mode: gamer
+    environment:
+      MYSQL_ROOT_PASSWORD: abao_222

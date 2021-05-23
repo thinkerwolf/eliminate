@@ -1,0 +1,11 @@
+com\thinkerwolf\eliminate\rpc\game\service\IGameToGatewayService.class
+com\thinkerwolf\eliminate\rpc\gateway\service\IGatewayToGameService.class
+com\thinkerwolf\eliminate\rpc\common\KfConstants.class
+com\thinkerwolf\eliminate\rpc\login\entity\PlayerLoginResult.class
+com\thinkerwolf\eliminate\rpc\login\service\ILoginToGatewayService.class
+com\thinkerwolf\eliminate\rpc\common\ServerType.class
+com\thinkerwolf\eliminate\rpc\game\entity\PlayerData.class
+com\thinkerwolf\eliminate\rpc\login\entity\PlayerSessionData.class
+com\thinkerwolf\eliminate\rpc\game\service\IGameToLoginService.class
+com\thinkerwolf\eliminate\rpc\common\KfUtils.class
+com\thinkerwolf\eliminate\rpc\login\service\ILoginToGameService.class

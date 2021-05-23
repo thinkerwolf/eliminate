@@ -1,0 +1,30 @@
+# servlet 配置
+servlet:
+  servletName: gamer
+  servletClass: com.thinkerwolf.gamer.core.mvc.DispatcherServlet   # servlet类名
+  initParams: # 参数列表
+    componentScanPackage: com.thinkerwolf # 组件扫描包名
+    compress: true # 传输压缩(仅http生效)
+    sessionTimeout: 3600 # session超时时间(s)
+    sessionTickTime: 5 # session检查tick(s)
+    filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.gateway.filter.GatewaySessionFilter
+
+# 监听器配置列表
+listeners:
+  - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
+
+# 网络配置列表
+net:
+  - bossThreads: 1
+    workerThreads: 5
+    coreThreads: 10
+    maxThreads: 11
+    channelHandlers: com.thinkerwolf.eliminate.gateway.net.http.HttpGatewayHandler;com.thinkerwolf.eliminate.gateway.net.websocket.WebsocketGatewayHandler
+    protocol: http
+    port: 81
+    ssl:
+      enabled: true
+    options:
+      so_keepalive: true
+    childOptions:
+      tcp_nodelay: true

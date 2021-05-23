@@ -1,0 +1,38 @@
+# EliminateGame Docker Compose
+version: '3.7'
+services:
+  eliminate_game1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: eliminate_game:1.0
+    restart: always
+    hostname: eliminate.game1
+    container_name: eliminate_game1
+    network_mode: gamer
+    ports:
+      - 80:80
+    environment:
+      GAMER_MY_ID: 1001
+
+#  eliminate_game2:
+#    image: eliminate_game:1.0
+#    depends_on:
+#      - eliminate_game1
+#    restart: always
+#    hostname: eliminate.game2
+#    container_name: eliminate_game2
+#    network_mode: gamer
+#    environment:
+#      GAMER_MY_ID: 1002
+#
+#  eliminate_game3:
+#    image: eliminate_game:1.0
+#    depends_on:
+#      - eliminate_game1
+#    restart: always
+#    hostname: eliminate.game3
+#    container_name: eliminate_game3
+#    network_mode: gamer
+#    environment:
+#      GAMER_MY_ID: 1003

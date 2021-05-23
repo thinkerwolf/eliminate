@@ -1,0 +1,87 @@
+# Spring配置
+spring:
+  profiles:
+    active:
+      - dev
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/eliminate_login?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+          username: root
+          password: 1234
+          driver-class-name: com.mysql.jdbc.Driver
+          hikari:
+            maxPoolSize: 100
+            minIdle: 10
+        sdata:
+          url: jdbc:mysql://localhost:3306/eliminate_sdata?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+          username: root
+          password: 1234
+          driver-class-name: com.mysql.jdbc.Driver
+          hikari:
+            maxPoolSize: 2
+
+# gamer 配置
+gamer:
+  type: login
+  servlet-boot: netty
+  registry:
+    enabled: true
+    client:
+      # service-url: zookeeper://127.0.0.1:2181/eliminate
+      service-url: multicast://224.0.0.1:1234/eliminate
+  #config-file: conf.yml
+  conf:
+    servlet:
+      servletName: gamer
+      servletClass: com.thinkerwolf.gamer.core.mvc.DispatcherServlet   # servlet类名
+      initParams: # 参数列表
+        componentScanPackage: com.thinkerwolf # 组件扫描包名
+        compress: true # 传输压缩(仅http生效)
+        sessionTimeout: 3600 # session超时时间(s)
+        sessionTickTime: 5 # session检查tick(s)
+        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.login.filter.LoginSessionFilter
+    listeners:
+      - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
+      - com.thinkerwolf.eliminate.pub.listener.LocalSessionAttributeListener
+      - com.thinkerwolf.eliminate.pub.listener.LocalSessionListener
+      - com.thinkerwolf.gamer.swagger.SwaggerEnableListener
+    net:
+      - workerThreads: 2 # worker线程数
+        coreThreads: 3 # tcp业务核心线程
+        maxThreads: 4 # tpc业务最大线程
+        countPerChannel: 20 # 客户端最大并发数量
+        protocol: TCP # 协议
+        port: 8788 # 段口
+        options: # netty option
+          so_keepalive: true
+        childOptions: # netty childOptions
+          tcp_nodelay: true
+      - bossThreads: 1
+        workerThreads: 5
+        coreThreads: 10
+        maxThreads: 11
+        protocol: HTTP
+        port: 82
+        ssl:
+          enabled: true
+        options:
+          so_keepalive: true
+        childOptions:
+          tcp_nodelay: true
+
+# mybatis plus配置
+mybatis-plus:
+  executor-type: BATCH
+  configuration:
+    cache-enabled: true
+    local-cache-scope: SESSION
+
+
+# 项目自身配置
+project:
+  gm:
+    enabled: true
+  mapscript:
+    enabled: false

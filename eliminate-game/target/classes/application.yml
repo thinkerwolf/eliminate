@@ -1,0 +1,70 @@
+# Spring配置
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://data.mysql1:3306/eliminate_game?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+          username: root
+          password: abao_222
+          driver-class-name: com.mysql.jdbc.Driver
+          hikari:
+            maxPoolSize: 20
+            minIdle: 5
+        sdata:
+          url: jdbc:mysql://data.mysql1:3306/eliminate_sdata?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
+          username: root
+          password: abao_222
+          driver-class-name: com.mysql.jdbc.Driver
+          hikari:
+            maxPoolSize: 2
+            minIdle: 1
+
+# Gamer配置
+gamer:
+  type: game
+  servlet-boot: netty
+  registry:
+    enabled: true
+    client:
+      service-url: zookeeper://zoo1:2181/eliminate
+  #config-file: conf.yml
+  conf:
+    servlet:
+      servletName: gamer
+      servletClass: com.thinkerwolf.gamer.core.mvc.DispatcherServlet   # servlet类名
+      initParams: # 参数列表
+        componentScanPackage: com.thinkerwolf # 组件扫描包名
+        compress: true # 传输压缩(仅http生效)
+        sessionTimeout: 3600 # session超时时间(s)
+        sessionTickTime: 5 # session检查tick(s)
+        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.filter.GameSessionFilter
+    listeners:
+      - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
+      - com.thinkerwolf.eliminate.pub.listener.LocalSessionAttributeListener
+      - com.thinkerwolf.eliminate.pub.listener.LocalSessionListener
+      - com.thinkerwolf.gamer.swagger.SwaggerEnableListener
+    net:
+      - workerThreads: 5
+        coreThreads: 10
+        maxThreads: 11
+        protocol: HTTP
+        port: 80
+        ssl:
+          enabled: true
+        options:
+          so_keepalive: true
+        childOptions:
+          tcp_nodelay: true
+
+# MybatisPlus配置
+mybatis-plus:
+  executor-type: BATCH
+  configuration:
+    cache-enabled: true
+    local-cache-scope: SESSION
+  global-config:
+    db-config:
+      id-type: ID_WORKER
+
+flyway.baselineOnMigrate: true

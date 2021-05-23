@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Game服文档-建造系统</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="doc"/>
+    <meta name="description" content="文档文字版"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/github-markdown.css">
+    <style>
+    	.markdown-body {
+    		box-sizing: border-box;
+    		min-width: 200px;
+    		max-width: 980px;
+    		margin: 0 auto;
+    		padding: 45px;
+    	}
+
+    	@media (max-width: 767px) {
+    		.markdown-body {
+    			padding: 15px;
+    		}
+    	}
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+     <h1>建筑系统</h1>
+<h2>解锁建筑GM</h2>
+<p>command=gm@handle&amp;cmd=reward&amp;param=building:1</p>
+<h2>建筑状态枚举</h2>
+<p>1.空闲   2.建造中   3.待确认</p>
+<h2>建造或升级接口-Interface</h2>
+<p>command=building@upgrade&amp;buildingId=1</p>
+<h2>升级完成后确认接口-Interface</h2>
+<p>command=building@confirm&amp;buildingId=1</p>
+<h2>推送建筑可建造-Push</h2>
+<p>BUILDING_INFO(&quot;push@building&quot;, &quot;info&quot;)</p>
+<pre><code class="language-json">{
+	&quot;status&quot;:3,
+	&quot;requestId&quot;:0,
+    &quot;cmd&quot;:&quot;push@building&quot;,
+	&quot;module&quot;:&quot;info&quot;,
+    &quot;data&quot;:{
+        &quot;lv&quot;:0,          // 等级 0级代表可建造
+        &quot;state&quot;:1,       // 建筑状态 1.空闲
+        &quot;pic&quot;:&quot;fire&quot;,    
+        &quot;buildingId&quot;:1  
+    }
+}
+</code></pre>
+<h2>推送正在建造或升级中-Push</h2>
+<pre><code class="language-json">{
+	&quot;status&quot;:3,
+	&quot;requestId&quot;:0,
+    &quot;cmd&quot;:&quot;push@building&quot;,
+	&quot;module&quot;:&quot;info&quot;,
+    &quot;data&quot;:{
+        &quot;rcd&quot;:5,      // 剩余cd s
+        &quot;tcd&quot;:10,     // 总cd s
+        &quot;lv&quot;:0,
+        &quot;state&quot;:2,    // 建筑状态  2.建造中
+        &quot;pic&quot;:&quot;fire&quot;,
+        &quot;buildingId&quot;:1
+    }
+    
+}
+</code></pre>
+<h2>推送建造或升级完成-Push</h2>
+<pre><code>{
+    &quot;cmd&quot;:&quot;push@building&quot;,
+    &quot;data&quot;:{
+        &quot;lv&quot;:1,           // 等级加1
+        &quot;state&quot;:1,     
+        &quot;pic&quot;:&quot;fire1&quot;,    // 图片改变
+        &quot;buildingId&quot;:1
+    },
+    &quot;module&quot;:&quot;info&quot;,
+    &quot;requestId&quot;:0,
+    &quot;status&quot;:3
+}
+</code></pre>
+<h2>登陆时推送所有建筑-Push</h2>
+<pre><code>BUILDING_ALL_INFO(&quot;push@building&quot;, &quot;all&quot;)
+{
+    &quot;cmd&quot;:&quot;push@building&quot;,
+    &quot;data&quot;:[
+        {
+            &quot;lv&quot;:3,
+            &quot;state&quot;:1,
+            &quot;pic&quot;:&quot;fire3&quot;,
+            &quot;buildingId&quot;:1
+        }
+    ],
+    &quot;module&quot;:&quot;all&quot;,
+    &quot;requestId&quot;:0,
+    &quot;status&quot;:3
+}
+</code></pre>
+
+    </article>
+</body>
+
+</html>

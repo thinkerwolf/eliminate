@@ -1,0 +1,29 @@
+# EliminateLogin Docker Compose
+version: '3.7'
+services:
+  eliminate_gateway1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: eliminate_gateway:1.0
+    restart: always
+    hostname: eliminate.gateway1
+    container_name: eliminate_gateway1
+    network_mode: gamer
+    ports:
+      - 81:81
+    environment:
+      GAMER_MY_ID: 1001
+
+#  eliminate_gateway2:
+#    image: eliminate_gateway:1.0
+#    depends_on:
+#      - eliminate_gateway1
+#    restart: always
+#    hostname: eliminate.gateway2
+#    container_name: eliminate_gateway2
+#    network_mode: gamer
+#    ports:
+#      8102:81
+#    environment:
+#      GAMER_MY_ID: 1002

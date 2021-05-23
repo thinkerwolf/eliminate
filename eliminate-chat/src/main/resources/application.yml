@@ -1,0 +1,37 @@
+spring:
+  redis:
+    host: redis.master
+    port: 6379
+    password: abao_222
+
+gamer:
+  id: 1001
+  type: chat
+  servlet-boot: netty
+  registry:
+    enabled: true
+    client:
+      service-url: zookeeper://zoo1:2181/eliminate
+  #config-file: conf.yml
+  conf:
+    servlet:
+      servletName: gamer
+      servletClass: com.thinkerwolf.gamer.core.mvc.DispatcherServlet
+      initParams:
+        componentScanPackage: com.thinkerwolf # 组件扫描包名
+        compress: true # 传输压缩(仅http生效)
+        sessionTimeout: 3600 # session超时时间(s)
+        sessionTickTime: 5 # session检查tick(s)
+        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter
+    listeners:
+      - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
+    net:
+      - workerThreads: 5
+        coreThreads: 10
+        maxThreads: 11
+        protocol: http
+        port: 83
+        ssl:
+          enabled: true
+        options:
+          so_keepalive: true

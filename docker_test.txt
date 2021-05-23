@@ -1,0 +1,5 @@
+# docker容器IP规划及命令
+
+## docker容器命令
+docker run -ip 172.18.0.2 -e MYSQL_ROOT_PASSWORD=70xl!wxy -p 3306:3306 --add-host 172.18.0.2:cs.mysql.master --name mysql_master -d mysql:5.7
+docker run -ip 172.18.0.10 -add-host 172.18.0.10:cs.zk.n1 --name zk_n1 -d zookeeper
