@@ -23,12 +23,13 @@ public abstract class AbstractInitManager implements InitManager {
 
     private SessionManager sessionManager;
     private String gamerMyId;
-    @Value("${gamer.id:}")
+
+    @Value("${eliminate.id:}")
     private String springGamerId;
-    @Value("${gamer.type:unknown}")
+
+    @Value("${eliminate.type:unknown}")
     private String serverType;
-    @Value("${gamer.registry.enabled:false}")
-    private boolean registryEnabled;
+
     @Autowired(required = false)
     private Registry registry;
 
@@ -71,9 +72,7 @@ public abstract class AbstractInitManager implements InitManager {
         doInit();
     }
 
-    /**
-     * 处理应用服务器ID，用于服务注册
-     */
+    /** 处理应用服务器ID，用于服务注册 */
     protected void processGamerId() {
         gamerMyId = System.getenv(Constants.ENV_GAMER_MY_ID);
         if (StringUtils.isNotBlank(gamerMyId)) {
@@ -96,38 +95,46 @@ public abstract class AbstractInitManager implements InitManager {
         SessionManagerHolder.set(sessionManager);
     }
 
-    /**
-     * 将本应用服务器地址注册到注册中心
-     */
+    /** 将本应用服务器地址注册到注册中心 */
     protected void registryServer() {
-        if (registryEnabled && registry != null) {
+        if (registry != null) {
             ServletBootstrap bootstrap = applicationContext.getBean(ServletBootstrap.class);
             registerSelf(bootstrap, registry);
-            registry.subscribeState(new StateListenerAdapter() {
-                @Override
-                public void notifyStateChange(RegistryState state) {
-                    System.err.println("State change " + state);
-                    if (RegistryState.CONNECTED.equals(state)) {
-                        registerSelf(bootstrap, registry);
-                    }
-                }
-            });
+            registry.subscribeState(
+                    new StateListenerAdapter() {
+                        @Override
+                        public void notifyStateChange(RegistryState state) {
+                            System.err.println("State change " + state);
+                            if (RegistryState.CONNECTED.equals(state)) {
+                                registerSelf(bootstrap, registry);
+                            }
+                        }
+                    });
         }
     }
 
     protected abstract void doInit() throws Exception;
 
     protected void registerSelf(ServletBootstrap bootstrap, Registry registry) {
-        EliminateConstants.COMMON_SCHEDULED.schedule(() -> {
-            for (URL url : bootstrap.getUrls()) {
-                Protocol protocol = Protocol.parseOf(url.getProtocol());
-                url.setPath(registry.url().getPath() + "/" + serverType + "/" + protocol.getName());
-                url.getParameters().put(URL.NODE_EPHEMERAL, true);
-                url.getParameters().put(URL.NODE_NAME, protocol.getName() + ":" + serverType + "_" + gamerMyId);
-                registry.register(url);
-            }
-        }, 500, TimeUnit.MILLISECONDS);
+        EliminateConstants.COMMON_SCHEDULED.schedule(
+                () -> {
+                    for (URL url : bootstrap.getUrls()) {
+                        Protocol protocol = Protocol.parseOf(url.getProtocol());
+                        url.setPath(
+                                registry.url().getPath()
+                                        + "/"
+                                        + serverType
+                                        + "/"
+                                        + protocol.getName());
+                        url.getParameters().put(URL.NODE_EPHEMERAL, true);
+                        url.getParameters()
+                                .put(
+                                        URL.NODE_NAME,
+                                        protocol.getName() + ":" + serverType + "_" + gamerMyId);
+                        registry.register(url);
+                    }
+                },
+                500,
+                TimeUnit.MILLISECONDS);
     }
-
-
 }

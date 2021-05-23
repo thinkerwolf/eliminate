@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author wukai
  * @date 2020/5/16 10:02:10
  */
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {"com.thinkerwolf.eliminate.game", "com.thinkerwolf.eliminate.pub"})
 @MapperScan("com.thinkerwolf.eliminate")
 @EnableTransactionManagement
 public class GameStartupMain {
@@ -21,5 +22,4 @@ public class GameStartupMain {
         ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);
         SpringApplication.run(GameStartupMain.class, args);
     }
-
 }

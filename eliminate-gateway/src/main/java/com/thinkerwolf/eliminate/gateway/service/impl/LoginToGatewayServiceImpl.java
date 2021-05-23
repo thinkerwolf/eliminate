@@ -14,6 +14,7 @@ import com.thinkerwolf.gamer.common.log.InternalLoggerFactory;
 import com.thinkerwolf.gamer.common.log.Logger;
 import com.thinkerwolf.gamer.core.servlet.Session;
 import com.thinkerwolf.gamer.registry.Registry;
+import com.thinkerwolf.gamer.rpc.annotation.RpcService;
 
 import java.util.List;
 
@@ -22,9 +23,11 @@ import java.util.List;
  *
  * @author wukai
  */
+@RpcService
 public class LoginToGatewayServiceImpl implements ILoginToGatewayService {
 
-    private static final Logger LOG = InternalLoggerFactory.getLogger(LoginToGatewayServiceImpl.class);
+    private static final Logger LOG =
+            InternalLoggerFactory.getLogger(LoginToGatewayServiceImpl.class);
 
     @Override
     public PlayerLoginDto loginPlayer(PlayerSessionVo data) {
@@ -32,17 +35,23 @@ public class LoginToGatewayServiceImpl implements ILoginToGatewayService {
         if (registry == null) {
             return new PlayerLoginDto(false);
         }
-        List<URL> urls = KfUtils.lookup(registry, ServerType.GAME, data.getProtocol(), data.getGameServer());
+        List<URL> urls =
+                KfUtils.lookup(registry, ServerType.GAME, data.getProtocol(), data.getGameServer());
         if (urls.isEmpty()) {
             return new PlayerLoginDto(false);
         }
-        IGatewayToGameClient gatewayToGameService = KfUtils.getRpcService(IGatewayToGameClient.class, urls.get(0));
+        IGatewayToGameClient gatewayToGameService =
+                KfUtils.getRpcService(IGatewayToGameClient.class, urls.get(0));
         PlayerLoginDto result = gatewayToGameService.loginPlayer(data);
         if (result.isSuc()) {
             Session session = SessionManagerHolder.get().getSession(data.getSessionId(), true);
             if (!session.getId().equals(data.getSessionId())) {
                 result.setSuc(false);
-                LOG.error("Gateway session not equal " + session.getId() + " != " + data.getSessionId());
+                LOG.error(
+                        "Gateway session not equal "
+                                + session.getId()
+                                + " != "
+                                + data.getSessionId());
                 return result;
             }
             session.touch();
@@ -50,6 +59,4 @@ public class LoginToGatewayServiceImpl implements ILoginToGatewayService {
         }
         return result;
     }
-
-
 }

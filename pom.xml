@@ -196,6 +196,11 @@
             </dependency>
             <dependency>
                 <groupId>com.thinkerwolf</groupId>
+                <artifactId>gamer-registry-etcd3</artifactId>
+                <version>${gamer_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thinkerwolf</groupId>
                 <artifactId>gamer-swagger</artifactId>
                 <version>${gamer_version}</version>
             </dependency>

@@ -1,11 +1,11 @@
 package com.thinkerwolf.eliminate.rpc.chat.service;
 
 import com.thinkerwolf.eliminate.rpc.chat.entity.ChatDto;
-import com.thinkerwolf.gamer.rpc.annotation.RpcClient;
+import com.thinkerwolf.gamer.rpc.annotation.RpcMethod;
 
-@RpcClient
 public interface IChatToGameClient {
 
+    @RpcMethod
     void notifyChat(ChatDto chatDto);
 
 }

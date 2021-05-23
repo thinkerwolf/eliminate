@@ -40,6 +40,10 @@
             <artifactId>gamer-rpc-websocket</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.thinkerwolf</groupId>
+            <artifactId>gamer-registry-etcd3</artifactId>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>eliminate-common</artifactId>
             <version>${project.parent.version}</version>

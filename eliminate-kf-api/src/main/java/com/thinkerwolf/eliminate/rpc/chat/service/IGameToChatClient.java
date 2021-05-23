@@ -1,7 +1,6 @@
 package com.thinkerwolf.eliminate.rpc.chat.service;
 
 import com.thinkerwolf.eliminate.rpc.chat.entity.*;
-import com.thinkerwolf.gamer.rpc.annotation.RpcClient;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import java.util.List;
  * @author wukai
  * @since 2020-09-01
  */
-@RpcClient
 public interface IGameToChatClient {
     /**
      * 向全服发送文字消息

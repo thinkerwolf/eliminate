@@ -27,17 +27,18 @@ apollo:
     enabled: true
     namespaces: application
 
-# gamer 配置
-gamer:
+eliminate:
   id: 1001
   type: game
+
+# gamer 配置
+gamer:
+  name: eliminate
   config-file: conf.yml
   servlet-boot: netty
   registry:
     enabled: true
-    client:
-      # service-url: zookeeper://127.0.0.1:2181/eliminate
-      service-url: multicast://224.0.0.1:1234/eliminate
+    address: etcd://localhost:2379
   conf:
     servlet:
       servletName: gamer

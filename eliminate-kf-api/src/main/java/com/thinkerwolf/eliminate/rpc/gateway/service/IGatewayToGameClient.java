@@ -2,7 +2,7 @@ package com.thinkerwolf.eliminate.rpc.gateway.service;
 
 import com.thinkerwolf.eliminate.rpc.login.entity.PlayerSessionVo;
 import com.thinkerwolf.eliminate.rpc.login.entity.PlayerLoginDto;
-import com.thinkerwolf.gamer.rpc.annotation.RpcClient;
+import com.thinkerwolf.gamer.rpc.annotation.RpcMethod;
 
 import java.util.List;
 
@@ -11,11 +11,12 @@ import java.util.List;
  *
  * @author wukai
  */
-@RpcClient(serialize = "hessian2")
 public interface IGatewayToGameClient {
 
+    @RpcMethod
     List<Integer> test(int num);
 
+    @RpcMethod
     PlayerLoginDto loginPlayer(PlayerSessionVo data);
 
 }

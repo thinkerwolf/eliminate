@@ -1,10 +1,10 @@
 package com.thinkerwolf.eliminate.chat.game;
 
 import com.google.common.collect.Lists;
-import com.thinkerwolf.eliminate.game.chat.entity.Chat;
-import com.thinkerwolf.eliminate.game.chat.entity.RedRecord;
-import com.thinkerwolf.eliminate.game.chat.repository.ChatRepository;
-import com.thinkerwolf.eliminate.game.chat.repository.RedRecordRepository;
+import com.thinkerwolf.eliminate.chat.entity.Chat;
+import com.thinkerwolf.eliminate.chat.entity.RedRecord;
+import com.thinkerwolf.eliminate.chat.repository.ChatRepository;
+import com.thinkerwolf.eliminate.chat.repository.RedRecordRepository;
 import com.thinkerwolf.eliminate.common.EliminateConstants;
 import com.thinkerwolf.eliminate.common.LocalMessages;
 import com.thinkerwolf.eliminate.rpc.chat.comm.ChatConstants;
@@ -19,6 +19,7 @@ import com.thinkerwolf.gamer.common.log.InternalLoggerFactory;
 import com.thinkerwolf.gamer.common.log.Logger;
 import com.thinkerwolf.gamer.registry.Registry;
 import com.thinkerwolf.gamer.remoting.Protocol;
+import com.thinkerwolf.gamer.rpc.annotation.RpcService;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@RpcService
 public class GameToChatClientImpl implements IGameToChatClient {
 
     private static final Logger LOG = InternalLoggerFactory.getLogger(GameToChatClientImpl.class);

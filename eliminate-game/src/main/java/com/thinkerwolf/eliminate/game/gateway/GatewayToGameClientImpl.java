@@ -13,10 +13,12 @@ import com.thinkerwolf.eliminate.rpc.login.entity.PlayerLoginDto;
 import com.thinkerwolf.gamer.common.log.InternalLoggerFactory;
 import com.thinkerwolf.gamer.common.log.Logger;
 import com.thinkerwolf.gamer.core.servlet.Session;
+import com.thinkerwolf.gamer.rpc.annotation.RpcService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RpcService
 public class GatewayToGameClientImpl implements IGatewayToGameClient {
 
     private static final Logger LOG = InternalLoggerFactory.getLogger(GatewayToGameClientImpl.class);

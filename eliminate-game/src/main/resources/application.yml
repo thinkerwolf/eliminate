@@ -20,6 +20,10 @@ spring:
             maxPoolSize: 2
             minIdle: 1
 
+eliminate:
+  id: 1001
+  type: game
+
 # Gamer配置
 gamer:
   type: game
