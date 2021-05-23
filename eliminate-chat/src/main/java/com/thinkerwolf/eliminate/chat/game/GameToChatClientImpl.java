@@ -1,10 +1,10 @@
 package com.thinkerwolf.eliminate.chat.game;
 
 import com.google.common.collect.Lists;
-import com.thinkerwolf.eliminate.chat.entity.Chat;
-import com.thinkerwolf.eliminate.chat.entity.RedRecord;
-import com.thinkerwolf.eliminate.chat.repository.ChatRepository;
-import com.thinkerwolf.eliminate.chat.repository.RedRecordRepository;
+import com.thinkerwolf.eliminate.game.chat.entity.Chat;
+import com.thinkerwolf.eliminate.game.chat.entity.RedRecord;
+import com.thinkerwolf.eliminate.game.chat.repository.ChatRepository;
+import com.thinkerwolf.eliminate.game.chat.repository.RedRecordRepository;
 import com.thinkerwolf.eliminate.common.EliminateConstants;
 import com.thinkerwolf.eliminate.common.LocalMessages;
 import com.thinkerwolf.eliminate.rpc.chat.comm.ChatConstants;

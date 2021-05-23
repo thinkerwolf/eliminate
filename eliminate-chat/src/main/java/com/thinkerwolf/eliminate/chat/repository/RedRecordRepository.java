@@ -1,6 +1,6 @@
 package com.thinkerwolf.eliminate.chat.repository;
 
-import com.thinkerwolf.eliminate.chat.entity.RedRecord;
+import com.thinkerwolf.eliminate.game.chat.entity.RedRecord;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

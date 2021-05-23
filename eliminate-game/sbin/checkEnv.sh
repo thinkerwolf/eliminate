@@ -2,7 +2,7 @@
 BINDIR="${BINDIR:-/usr/bin}"
 GAMER_PREFIX="${BINDIR}/.."
 
-MAIN_CLASS="com.thinkerwolf.eliminate.StartupMain"
+MAIN_CLASS="com.thinkerwolf.eliminate.game.GameStartupMain"
 
 echo "BINDIR=$BINDIR"
 #check to see if the conf dir is given as an optional argument

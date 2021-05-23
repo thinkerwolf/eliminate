@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -18,7 +23,7 @@
     <orderEntry type="library" name="Maven: com.thinkerwolf:gamer-common:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.caucho:hessian:4.0.38" level="project" />
     <orderEntry type="library" name="Maven: com.thinkerwolf:gamer-registry-api:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.50.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.52.Final" level="project" />
     <orderEntry type="module" module-name="eliminate-kf-api" />
     <orderEntry type="library" name="Maven: com.thinkerwolf:gamer-rpc-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.thinkerwolf:gamer-remoting-api:1.0.0" level="project" />

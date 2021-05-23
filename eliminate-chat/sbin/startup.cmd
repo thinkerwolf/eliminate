@@ -6,7 +6,7 @@ call "%~dp0checkEnv.cmd"
 
 set DIR=%~dp0..%
 
-set MAIN_CLASS=com.thinkerwolf.eliminate.chat.ChatStartupMain
+set MAIN_CLASS=com.thinkerwolf.eliminate.game.chat.ChatStartupMain
 
 set JAVA_OPT=%JAVA_OPT% -server -Xms1g -Xmx1g -Xmn512m
 set JAVA_OPT=%JAVA_OPT% -XX:+UseG1GC -XX:G1HeapRegionSize=16m -XX:G1ReservePercent=25 -XX:SurvivorRatio=8

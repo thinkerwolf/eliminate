@@ -47,7 +47,7 @@ gamer:
         compress: true # 传输压缩(仅http生效)
         sessionTimeout: 3600 # session超时时间(s)
         sessionTickTime: 5 # session检查tick(s)
-        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.filter.GameSessionFilter
+        filters: com.thinkerwolf.eliminate.common.filter.ExceptionFilter;com.thinkerwolf.eliminate.game.filter.GameSessionFilter
     listeners:
       - com.thinkerwolf.gamer.rpc.mvc.RpcServiceLoadListener
       - com.thinkerwolf.eliminate.pub.listener.LocalSessionAttributeListener

@@ -1,7 +1,7 @@
 package com.thinkerwolf.eliminate;
 
 
-import com.thinkerwolf.eliminate.chat.entity.Chat;
+import com.thinkerwolf.eliminate.game.chat.entity.Chat;
 import org.apache.commons.lang.math.RandomUtils;
 import org.junit.Test;
 

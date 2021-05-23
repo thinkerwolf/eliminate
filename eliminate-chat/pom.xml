@@ -23,6 +23,11 @@
         </dependency>
         <dependency>
             <groupId>com.thinkerwolf</groupId>
+            <artifactId>eliminate-pub</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thinkerwolf</groupId>
             <artifactId>eliminate-kf-api</artifactId>
             <version>${project.version}</version>
         </dependency>

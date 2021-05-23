@@ -50,7 +50,7 @@
         <maven_flatten_version>1.1.0</maven_flatten_version>
         <maven_enforce_version>3.0.0-M2</maven_enforce_version>
 
-        <netty-all_version>4.1.50.Final</netty-all_version>
+        <netty-all_version>4.1.52.Final</netty-all_version>
         <spring_boot_version>2.0.3.RELEASE</spring_boot_version>
         <gamer_version>1.0.0</gamer_version>
         <lombok_version>1.18.10</lombok_version>
